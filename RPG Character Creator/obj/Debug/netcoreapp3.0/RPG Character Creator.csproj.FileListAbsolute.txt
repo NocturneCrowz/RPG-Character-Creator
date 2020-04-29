@@ -9,3 +9,14 @@ C:\Users\Cristian Barzotti\source\repos\RPG Character Creator\RPG Character Crea
 C:\Users\Cristian Barzotti\source\repos\RPG Character Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.AssemblyInfo.cs
 C:\Users\Cristian Barzotti\source\repos\RPG Character Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.dll
 C:\Users\Cristian Barzotti\source\repos\RPG Character Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.pdb
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\bin\Debug\netcoreapp3.0\RPG Character Creator.exe
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\bin\Debug\netcoreapp3.0\RPG Character Creator.deps.json
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\bin\Debug\netcoreapp3.0\RPG Character Creator.runtimeconfig.json
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\bin\Debug\netcoreapp3.0\RPG Character Creator.runtimeconfig.dev.json
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\bin\Debug\netcoreapp3.0\RPG Character Creator.dll
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\bin\Debug\netcoreapp3.0\RPG Character Creator.pdb
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.csprojAssemblyReference.cache
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.AssemblyInfoInputs.cache
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.AssemblyInfo.cs
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.dll
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.pdb

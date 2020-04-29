@@ -20,3 +20,5 @@ C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\o
 C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.AssemblyInfo.cs
 C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.dll
 C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.pdb
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG_Character_Creator.Properties.Resources.resources
+C:\Users\Cristian Barzotti\Desktop\RPG-Character-Creator\RPG Character Creator\obj\Debug\netcoreapp3.0\RPG Character Creator.csproj.GenerateResource.cache

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace RPG_Character_Creator
@@ -8,8 +9,8 @@ namespace RPG_Character_Creator
     class SearchAFeat
     {
         // File Feats.txt
-        StreamReader file;
-        string[] featLine = null;
+        private StreamReader file;
+        private string[] featLine;
 
         // Search a feat function
         public void SAF(string keyword)
@@ -39,35 +40,58 @@ namespace RPG_Character_Creator
 
         public void PrintInfo()
         {
-            string[] info = this.featLine[0].Split(": "); 
-            Console.WriteLine("Info!");
-            Console.WriteLine();
-            Console.WriteLine(info[1]);
+            if (this.featLine == null)
+                Console.WriteLine("I can't print the info, I don't have a feat associated!");
+            else
+            {
+                Console.WriteLine("\n----------------------------------------");
+                string[] info = this.featLine[0].Split(": "); 
+                Console.WriteLine("Info!");
+                Console.WriteLine();
+                Console.WriteLine(info[1]);
+            }
+            
         }// PrintInfo
 
         public void PrintReq()
         {
-            string[] req = this.featLine[1].Split(": ");  
-            Console.WriteLine("Prerequisite!");
-            Console.WriteLine();
-            Console.WriteLine(req[1]);
+            if (this.featLine == null)
+                Console.WriteLine("I can't print the prerequisite, I don't have a feat associated!");
+            else
+            {
+                Console.WriteLine("\n----------------------------------------");
+                string[] req = this.featLine[1].Split(": ");
+                Console.WriteLine("Prerequisite!");
+                Console.WriteLine();
+                Console.WriteLine(req[1]);
+            }
         }// PrintReq
 
         public void PrintBonus()
         {
-            string[] bonus = this.featLine[2].Split(": ");
-            Console.WriteLine("Bonus!");
-            Console.WriteLine();
-            Console.WriteLine(bonus[1]);
+            if (this.featLine == null)
+                Console.WriteLine("I can't print the bonus, I don't have a feat associated!");
+            else
+            {
+                Console.WriteLine("\n----------------------------------------");
+                string[] bonus = this.featLine[2].Split(": ");
+                Console.WriteLine("Bonus!");
+                Console.WriteLine();
+                Console.WriteLine(bonus[1]);
+            }
         }// PrintBonus
 
         // Public costructor to initialize the file
 
-        public SearchAFeat(string path)
+        public SearchAFeat()
         {
+            var fileName = "RPG_Character_Creator.Feats.txt";
+            var assembly = Assembly.GetExecutingAssembly();
+            Stream stream = assembly.GetManifestResourceStream(fileName);
+            this.featLine = null;
             try
             {
-                this.file = new StreamReader(@path);
+                this.file = new StreamReader(stream);
             }
             catch (Exception e)
             {

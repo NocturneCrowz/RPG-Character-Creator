@@ -11,6 +11,29 @@ namespace RPG_Character_Creator
         // File Feats.txt
         private StreamReader file;
         private string[] featLine;
+        private Dictionary<string, string> listOfFeats;
+
+        // List of feats
+        public void PrintList()
+        {
+            foreach (KeyValuePair<string, string> kvp in this.listOfFeats)
+            {
+                Console.WriteLine("[]" + kvp.Key + " ==> " + kvp.Value);
+            }
+
+        }// PrintList
+
+        // List Creation
+        private void CreateList()
+        {
+            string line;
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] data = line.Split('|');
+                string[] info = data[0].Split(": "); 
+                this.listOfFeats.Add(info[0], info[1]);
+            }
+        }// CreateList
 
         // Search a feat function
         public void SAF(string keyword)
@@ -18,7 +41,7 @@ namespace RPG_Character_Creator
             // Loading Feats.txt
             string ln;
             Console.WriteLine("Searching into the void...");
-
+            
             // Reading Feats.txt and comparing the feat needed with the text
             while ((ln = file.ReadLine()) != null)
             {
@@ -26,7 +49,6 @@ namespace RPG_Character_Creator
                 if (ln.StartsWith(keyword + ':', StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Feat found!");
-                    //Console.WriteLine(ln);
                     this.featLine = ln.Split('|');
                     file.Close();
                     return;
@@ -37,6 +59,7 @@ namespace RPG_Character_Creator
             Console.WriteLine("It seems like I wasn't able to find your feat. Sadly my AI is not that great, blame the developer!");
             file.Close();
         }// SAF
+
 
         public void PrintInfo()
         {
@@ -85,18 +108,26 @@ namespace RPG_Character_Creator
 
         public SearchAFeat()
         {
+            // File Path attributes
             var fileName = "RPG_Character_Creator.Feats.txt";
             var assembly = Assembly.GetExecutingAssembly();
             Stream stream = assembly.GetManifestResourceStream(fileName);
+            // Class attributes
             this.featLine = null;
+            this.listOfFeats = new Dictionary<string, string>();
+            // Loading the File text
             try
             {
                 this.file = new StreamReader(stream);
             }
             catch (Exception e)
             {
-                Console.WriteLine("If you see this, something terrible happened while opening the file. Use CTRL + C to exit the program and start it again. Make sure to double check the path!");
+                Console.WriteLine("If you see this, something terrible happened while opening the file. Use CTRL + C to exit the program and start it again.");
+                Console.WriteLine("This is the error.");
+                Console.WriteLine(e);
             }
+            // Dictionary
+            CreateList();
         }// SearcAFeat
     }// Class
 }// Namespace

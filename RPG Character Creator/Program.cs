@@ -52,6 +52,7 @@ namespace RPG_Character_Creator
             while (true)
             {
                 SearchAFeat search = new SearchAFeat();
+                search.PrintList();
                 Console.WriteLine("Insert a feat to search: ");
                 search.SAF(Console.ReadLine());
                 search.PrintInfo();

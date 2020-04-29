@@ -23,7 +23,7 @@ namespace RPG_Character_Creator
             while ((ln = file.ReadLine()) != null)
             {
                 // Succesful search
-                if (ln.Contains(keyword + ':', StringComparison.OrdinalIgnoreCase))
+                if (ln.StartsWith(keyword + ':', StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Feat found!");
                     //Console.WriteLine(ln);

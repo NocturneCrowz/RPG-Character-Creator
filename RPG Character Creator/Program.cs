@@ -8,8 +8,8 @@ namespace RPG_Character_Creator
     {
         static void Main(string[] args)
         {
-            // dice roll
-            /* DiceRoll rnd = new DiceRoll();
+            // dice roll, working
+             /*DiceRoll rnd = new DiceRoll();
              int diceRoll = -1;
              Console.WriteLine("Choose a number:");
              do
@@ -31,22 +31,33 @@ namespace RPG_Character_Creator
                  }
                  finally
                  {
-                     diceRoll = rnd.Roll(value);
-                     if (diceRoll == -1)
+                     if (value == 0)
                      {
-                         Console.WriteLine("Whoops! Your dice has fallen into a blackhole, recover it and try again! Choose a number: ");
+                        Console.WriteLine("I wasn't able to finish the roll, try again! Choose a number: ");
+                     }
+                     else
+                     {
+                        diceRoll = rnd.Roll(value);
+                        if (diceRoll == -1)
+                        {
+                            Console.WriteLine("Whoops! Your dice has fallen into a blackhole, recover it and try again! Choose a number: ");
+                        }
                      }
                  }
              } while (diceRoll == -1);
-
              Console.WriteLine(diceRoll);*/
+
+            // Class search working
+            
             Console.WriteLine("Path");
             string path = Console.ReadLine();
-
-            Console.WriteLine("Feat");
             SearchAFeat search = new SearchAFeat(path);
+            Console.WriteLine("Feat");
             search.SAF(Console.ReadLine());
-           
+            search.PrintInfo();
+            search.PrintReq();
+            search.PrintBonus();
+            
             
             
 

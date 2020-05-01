@@ -12,6 +12,9 @@ namespace RPG_Character_Creator
         private int fortitude;
         private int reflex;
         private int will;
+        private int hp;
+        private int bab;
+        private Dictionary<string, int> castableSpells;
         public void PrintStats()
         {
             foreach (KeyValuePair<string, int> kvp in this.statistics)
@@ -19,57 +22,6 @@ namespace RPG_Character_Creator
                 Console.WriteLine("[]" + kvp.Key + "\t ==> \t" + kvp.Value);
             }
         }// PrintStats
-
-        public void PrintAStat() 
-        {
-            Console.WriteLine("Which one of your statistic you want to print?");
-            Console.WriteLine("1- Armor Class");
-            Console.WriteLine("2- Fortitude");
-            Console.WriteLine("3- Reflex");
-            Console.WriteLine("4- Will");
-            int res;
-            try
-            {
-                do
-                {
-                    res = Convert.ToInt32(Console.ReadLine());
-                    if ((res < 1) || (res > 4))
-                    {
-                        Console.WriteLine("That is invalid. Please try again: ");
-                    }
-
-                } while ((res < 1) || (res > 4));
-
-                switch (res)
-                {
-                    case 1:
-                        Console.WriteLine("You chose Armor Class. You current value is: " + this.armorClass);
-                        break;
-                    case 2:
-                        Console.WriteLine("You chose Fortitude. You current value is: " + this.fortitude);
-                        break;
-                    case 3:
-                        Console.WriteLine("You chose Reflex. You current value is: " + this.reflex);
-                        break;
-                    case 4:
-                        Console.WriteLine("You chose Will. You current value is: " + this.will);
-                        break;
-                    default:
-                        Console.WriteLine("Something went wrong. Try again, or ask for support!");
-                        break;
-                }// Switch case
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("It seems like you tried to insert one or more letters instead of an integer. You can't do that!");
-                Console.WriteLine();
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("It seems like something went wrong. Try contacting the developer, but he won't know much more.");
-                Console.WriteLine();
-            }// Try-Catch
-        }// PrintAStat
 
         public void ChangeStat()
         {
@@ -133,9 +85,34 @@ namespace RPG_Character_Creator
                 this.reflex += n;
             else if (s == "will")
                 this.will += n;
+            else if (s == "bab")
+                this.bab += n;
+            else if (s == "hp")
+                this.hp = n;
             else
                 Console.WriteLine("Something went wrong. Ooof.");
         }// UpdateStat
+
+        protected int GetStat(string s)
+        {
+            int res = 0;
+            if (s == "armorClass")
+                res = this.armorClass;
+            else if (s == "fortitude")
+                res = this.fortitude;
+            else if (s == "reflex")
+                res = this.reflex;
+            else if (s == "will")
+                res = this.will;
+            else if (s == "bab")
+                res = this.bab;
+            else if (s == "hp")
+                res = this.hp;
+            else
+                Console.WriteLine("Something went wrong. Ooof.");
+
+            return res;
+        }// GetStat
 
         protected int GetModifier(string name)
         {
@@ -144,7 +121,26 @@ namespace RPG_Character_Creator
             
             return (value -10)/2;
 
-        }// GetStat
+        }// GetModifier
+
+        protected void AddSpell(int n, string s)
+        {
+            this.castableSpells.Add(s, n);
+        }// AddSpell
+
+        public void PrintCastableSpells()
+        {
+            if (this.castableSpells == null)
+                Console.WriteLine("This class cannot cast spells!");
+            else
+            {
+                foreach (KeyValuePair<string, int> kvp in this.castableSpells)
+                {
+                    Console.WriteLine("[]" + kvp.Key + "\t ==> \t" + kvp.Value);
+                }
+            }
+        }// PrintCastableSpells
+
         public CharacterCombat()
         { 
             this.statistics = new Dictionary<string, int>();

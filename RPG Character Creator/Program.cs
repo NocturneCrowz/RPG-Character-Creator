@@ -63,14 +63,15 @@ namespace RPG_Character_Creator
             */
 
             //CharacterCombat ciao = new CharacterCombat();
-            Barbarian asd = new Barbarian(5);
+           /* Barbarian asd = new Barbarian(5);
             asd.ChangeStat();
-            asd.PrintTalents();
+            asd.PrintTalents();*/
 
-            while(true)
-            {
-                asd.UpdateHP();
-            }
+            Monk monk = new Monk(5);
+            Console.WriteLine(monk.GetBonusFeat());
+            monk.PrintCastableSpells();
+            monk.PrintTalents();
+            monk.PrintStats();
 
 
         }

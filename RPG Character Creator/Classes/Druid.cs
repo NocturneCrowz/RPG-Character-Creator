@@ -4,22 +4,28 @@ using System.Text;
 
 namespace RPG_Character_Creator
 {
-    class Barbarian : CharacterCombat
+    class Druid : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> {"Fast Movement", "Illiteracy", "Rage" };
-        private int hitDie = 12;
-        private int hp;
+        private List<string> baseTalents = new List<string> { "Animal Companion", "Nature Sense", "Wild Empathy" };
+        private int hitDie = 8;
         private int lvl;
+        private int bonusFeat = 0;
+
+        public int GetBonusFeat()
+        {
+            return this.bonusFeat;
+        }// GetBonusFeat
         public void PrintTalents()
         {
             baseTalents.ForEach(action: Console.WriteLine);
         }// PrintTalents
-        public void UpdateHP()
+        public void HPInfo()
         {
             Console.WriteLine("You just entered the Hit Point manager! What would you do?");
             Console.WriteLine("1- Print HP.");
             Console.WriteLine("2- Generate HP randomly.");
             Console.WriteLine("3- Insert HP value.");
+
             int res = 0;
             do
             {
@@ -41,22 +47,24 @@ namespace RPG_Character_Creator
                     switch (res)
                     {
                         case 1:
-                            Console.WriteLine("The value of your HP is: " + this.hp);
+                            Console.WriteLine("The value of your HP is: " + GetStat("hp"));
                             break;
                         case 2:
                             Console.WriteLine("As you prefer! Randomly generating HP value, stand by!");
                             DiceRoll dice = new DiceRoll();
-                            this.hp = 0;
+                            int hpUpdate = 0;
+                            UpdateStat(hpUpdate, "hp");
                             for (int i = 0; i < this.lvl; i++)
                             {
-                                this.hp += dice.Roll(this.hitDie) + GetModifier("Constitution");
+                                hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
                                 Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(this.hp);
+                                Console.WriteLine(GetStat("hp"));
                             }
+                            UpdateStat(hpUpdate, "hp");
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
-                            this.hp = Convert.ToInt32(Console.ReadLine());
+                            UpdateStat(Convert.ToInt32(Console.ReadLine()), "hp");
                             break;
                         default:
                             break;
@@ -69,36 +77,67 @@ namespace RPG_Character_Creator
 
 
         }
-        public Barbarian(int lvl)
+        public Druid(int lvl)
         {
             this.lvl = lvl;
             switch (lvl)
             {
                 case 1:
                     UpdateStat(2, "fortitude");
+                    UpdateStat(0, "reflex");
+                    UpdateStat(2, "will");
+                    UpdateStat(0, "bab");
+                    AddSpell(3, "Level 0");
+                    AddSpell(1, "Level 1");
                     break;
                 case 2:
                     UpdateStat(3, "fortitude");
-                    this.baseTalents.Add("Uncanny Dodge");
+                    UpdateStat(0, "reflex");
+                    UpdateStat(3, "will");
+                    UpdateStat(1, "bab");
+                    AddSpell(4, "Level 0");
+                    AddSpell(2, "Level 1");
+                    this.baseTalents.Add("Woodland Stride");
                     break;
                 case 3:
                     UpdateStat(3, "fortitude");
                     UpdateStat(1, "reflex");
-                    UpdateStat(1, "will");
-                    this.baseTalents.Add("Uncanny Dodge");
+                    UpdateStat(3, "will");
+                    UpdateStat(2, "bab");
+                    AddSpell(4, "Level 0");
+                    AddSpell(2, "Level 1");
+                    AddSpell(1, "Level 2");
+                    this.baseTalents.Add("Woodland Stride");
+                    this.baseTalents.Add("Trackless Step");
+                    this.bonusFeat++;
                     break;
                 case 4:
                     UpdateStat(4, "fortitude");
                     UpdateStat(1, "reflex");
-                    UpdateStat(1, "will");
-                    this.baseTalents.Add("Uncanny Dodge");
+                    UpdateStat(4, "will");
+                    UpdateStat(3, "bab");
+                    AddSpell(5, "Level 0");
+                    AddSpell(3, "Level 1");
+                    AddSpell(2, "Level 2");
+                    this.baseTalents.Add("Woodland Stride");
+                    this.baseTalents.Add("Trackless Step");
+                    this.baseTalents.Add("Resist Nature's Lure");
+                    this.bonusFeat++;
                     break;
                 case 5:
-                    UpdateStat(5, "fortitude");
+                    UpdateStat(4, "fortitude");
                     UpdateStat(1, "reflex");
-                    UpdateStat(1, "will");
-                    this.baseTalents.Add("Uncanny Dodge");
-                    this.baseTalents.Add("Improved Uncanny Dodge");
+                    UpdateStat(4, "will");
+                    UpdateStat(3, "bab");
+                    AddSpell(5, "Level 0");
+                    AddSpell(3, "Level 1");
+                    AddSpell(2, "Level 2");
+                    AddSpell(1, "Level 3");
+                    this.baseTalents.Add("Woodland Stride");
+                    this.baseTalents.Add("Trackless Step");
+                    this.baseTalents.Add("Resist Nature's Lure");
+                    this.baseTalents.Add("Wild Shape");
+                    this.bonusFeat++;
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

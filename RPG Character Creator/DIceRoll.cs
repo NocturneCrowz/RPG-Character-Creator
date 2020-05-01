@@ -15,7 +15,6 @@ namespace RPG_Character_Creator
             int res;
             if (n >= 1)
             {
-                Console.WriteLine("Rolling a d" + n + " dice!");
                 res = this.rnd.Next(1, n);
             }
             else
@@ -25,5 +24,21 @@ namespace RPG_Character_Creator
 
             return res;    
         } //Roll
+
+        public int RollAndPrint(int n)
+        {
+            int res;
+            if (n >= 1)
+            {
+                Console.WriteLine("Rolling a d" + n + " dice!");
+                res = this.rnd.Next(1, n);
+            }
+            else
+            {
+                res = -1;
+            }
+
+            return res;
+        }
     } //Class
 } //Namespace

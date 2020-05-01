@@ -26,6 +26,9 @@ namespace RPG_Character_Creator
         public string Sex { get => this._sex; set => this._sex = value; }
         public int Age { get => this._age; set => this._age = value; }
         public int Height { get => this._height; set => this._height = value; }
+        public int Weight { get => this._weight; set => this._weight = value; }
+        public string Size { get => this._size; set => this._size = value; }
+        public string Hair { get => this._hair; set => this._hair = value; }
         public string Eyes { get => this._eyes; set => this._eyes = value; }
         public string SkinTone { get => this._skinTone; set => this._skinTone = value; }
 

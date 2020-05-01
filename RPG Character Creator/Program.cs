@@ -9,7 +9,7 @@ namespace RPG_Character_Creator
         static void Main(string[] args)
         {
             // dice roll, working
-            DiceRoll rnd = new DiceRoll();
+            /*DiceRoll rnd = new DiceRoll();
             int diceRoll = -1;
             Console.WriteLine("Choose a number:");
             do
@@ -45,10 +45,10 @@ namespace RPG_Character_Creator
                     }
                 }
             } while (diceRoll == -1);
-            Console.WriteLine(diceRoll);
+            Console.WriteLine(diceRoll);*/
 
-            // Class search working
-
+            // Talent search working
+            /*
             while (true)
             {
                 SearchAFeat search = new SearchAFeat();
@@ -60,11 +60,18 @@ namespace RPG_Character_Creator
                 search.PrintBonus();
 
             }
+            */
 
-            
-            
-            
-            
+            //CharacterCombat ciao = new CharacterCombat();
+            Barbarian asd = new Barbarian(5);
+            asd.ChangeStat();
+            asd.PrintTalents();
+
+            while(true)
+            {
+                asd.UpdateHP();
+            }
+
 
         }
     }

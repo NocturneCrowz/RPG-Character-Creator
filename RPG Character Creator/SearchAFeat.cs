@@ -33,12 +33,12 @@ namespace RPG_Character_Creator
                 string[] info = data[0].Split(": "); 
                 this.listOfFeats.Add(info[0], info[1]);
             }
+            file.Close();
         }// CreateList
 
         // Search a feat function
         public void SAF(string keyword)
         {
-            // Loading Feats.txt
             string ln;
             Console.WriteLine("Searching into the void...");
             

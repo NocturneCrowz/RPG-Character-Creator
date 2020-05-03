@@ -6,13 +6,20 @@ using System.Text;
 
 namespace RPG_Character_Creator
 {
-    class SearchAFeat
+    class FeatsManager
     {
         // File Feats.txt
         private StreamReader file;
         private string[] featLine;
         private Dictionary<string, string> listOfFeats;
 
+        private void OpenFile()
+        {
+            var fileName = "RPG_Character_Creator.Feats.txt";
+            var assembly = Assembly.GetExecutingAssembly();
+            Stream stream = assembly.GetManifestResourceStream(fileName);
+            this.file = new StreamReader(stream);
+        }
         // List of feats
         public void PrintList()
         {
@@ -37,11 +44,11 @@ namespace RPG_Character_Creator
         }// CreateList
 
         // Search a feat function
-        public void SAF(string keyword)
+        public void SearchFeat(string keyword)
         {
             string ln;
             Console.WriteLine("Searching into the void...");
-            
+            OpenFile();
             // Reading Feats.txt and comparing the feat needed with the text
             while ((ln = file.ReadLine()) != null)
             {
@@ -106,7 +113,7 @@ namespace RPG_Character_Creator
 
         // Public costructor to initialize the file
 
-        public SearchAFeat()
+        public FeatsManager()
         {
             // File Path attributes
             var fileName = "RPG_Character_Creator.Feats.txt";

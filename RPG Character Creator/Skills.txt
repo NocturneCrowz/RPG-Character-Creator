@@ -1,0 +1,36 @@
+﻿Appraise: You can appraise common or well-known objects.|Intelligence
+Balance: You can walk on a precarious surface.|Dexterity
+Bluff: A Bluff check is opposed by the target’s Sense Motive check.|Charisma
+Climb: With a successful Climb check, you can advance up, down, or across a slope, a wall, or some other steep incline (or even a ceiling with handholds) at one-quarter your normal speed.|Strength
+Concentration: You must make a Concentration check whenever you might potentially be distracted (by taking damage, by harsh weather, and so on) while engaged in some action that requires your full attention. Such actions include casting a spell, concentrating on an active spell, directing a spell, using a spell-like ability, or using a skill that would provoke an attack of opportunity.|Constitution
+Craft: A Craft skill is specifically focused on creating something.|Intelligence
+Decipher Script: You can decipher writing in an unfamiliar language or a message written in an incomplete or archaic form.|Intelligence
+Diplomacy: You can change the attitudes of others (nonplayer characters) with a successful Diplomacy check.|Charisma
+Disable Device: Attempt to disable a device, like traps. The Disable Device check is made secretly, so that you don’t necessarily know whether you’ve succeeded.|Intelligence
+Disguise: Allow you to disguise yourself. Your Disguise check result determines how good the disguise is, and it is opposed by others’ Spot check results.|Charisma
+Escape Artist: Attempt to free yourself from various movement impairing objects (like ropes and manacles).|Dexterity
+Forgery: Allow you to create false documents. Forgery requires writing materials appropriate to the document being forged, enough light or sufficient visual acuity to see the details of what you’re writing, wax for seals (if appropriate), and some time.|Intelligence
+Gather Information: Attempt to gather some informations. A Gather Information check get you a general idea of a city’s major news items, assuming there are no obvious reasons why the information would be withheld. The higher your check result, the better the information.|Charisma
+Handle Animal: Allow you to teach, train or influence an animal.|Charisma
+Heal: Performa various tasks to save a dying character, like First Aid and Poison/Disease Treating.|Wisdom
+Hide: Hide yourself. Your Hide check is opposed by the Spot check of anyone who might see you. You can move up to one-half your normal speed and hide at no penalty.|Dexterity
+Intimidate: Attempt to intimidate a target. If you beat your target’s check result, you may treat the target as friendly, but only for the purpose of actions taken while it remains intimidated.|Charisma
+Jump: Your Jump check is modified by your speed. If your speed is 30 feet then no modifier based on speed applies to the check. If your speed is less than 30 feet, you take a -6 penalty for every 10 feet of speed less than 30 feet. If your speed is greater than 30 feet, you gain a +4 bonus for every 10 feet beyond 30 feet.|Strength
+Knowledge: You already know that! You have the knowledge of a field of study, and you can use it at your own advantage.|Intelligence
+Listen: Attempt to listen to a conversation or a sound.|Wisdom
+Move Silently: Attempt to not draw attention on you while moving.|Dexterity
+Open Lock: Attempt to lockpick a lock.|Dexterity
+Perform: You can perform actions like Dancing and Singing. Each of the nine categories of the Perform skill includes a variety of methods, instruments, or techniques.|Charisma
+Profession: You are a craftsman. You can practice your trade and make a decent living, earning about half your Profession check result in gold pieces per week of dedicated work. You know how to use the tools of your trade, how to perform the profession’s daily tasks, how to supervise helpers, and how to handle common problems.|Wisdom
+Ride: Ride a mount. A DC is required only for special actions, like Leap or Cover.|Dexterity
+Search: Search for something. You generally must be within 10 feet of the object or surface to be searched.|Intelligence
+Sense Motive: A successful check lets you avoid being bluffed. You can also use this skill to determine when “something is up” (that is, something odd is going on) or to assess someone’s trustworthiness.|Wisdom
+Sleight Of Hand: You can perform various tasks with small objects, like Hiding them or Stealing.|Dexterity
+Speak Language: You speak the selected language.|None
+Spellcraft: Allow you to identify spells as they are cast or spells already in place.|Intelligence
+Spot: The Spot skill is used primarily to detect characters or creatures who are hiding.|Wisdom
+Survival: You can keep yourself and others safe and fed in the wild.|Wisdom
+Swim: Make a Swim check once per round while you are in the water.|Strength
+Tumble: You can land softly when you fall or tumble past opponents.|Dexterity
+Use Magic Device: You can use this skill to read a spell or to activate a magic item.|Charisma
+Use Rope: Attempt to use a rope. Most tasks with a rope are relatively simple.|Dexterity

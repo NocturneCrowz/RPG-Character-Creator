@@ -8,6 +8,8 @@ namespace RPG_Character_Creator
     {
         static void Main(string[] args)
         {
+
+            //https://www.d20srd.org/index.htm
             // dice roll, working
             /*DiceRoll rnd = new DiceRoll();
             int diceRoll = -1;
@@ -63,22 +65,28 @@ namespace RPG_Character_Creator
             */
 
             //CharacterCombat ciao = new CharacterCombat();
-           /* Barbarian asd = new Barbarian(5);
-            asd.ChangeStat();
-            asd.PrintTalents();*/
+            /* Barbarian asd = new Barbarian(5);
+             asd.ChangeStat();
+             asd.PrintTalents();*/
+            /*
+           Monk monk = new Monk(5);
+           Console.WriteLine(monk.GetBonusFeat());
+           monk.PrintCastableSpells();
+           monk.PrintTalents();
+           monk.PrintStats();
 
-            Monk monk = new Monk(5);
-            Console.WriteLine(monk.GetBonusFeat());
-            monk.PrintCastableSpells();
-            monk.PrintTalents();
-            monk.PrintStats();
+           monk.ChangeBaseStat("Dexterity");
+           monk.PrintStats();
 
-            monk.ChangeBaseStat("Dexterity");
-            monk.PrintStats();
+           Wizard wiz = new Wizard(5);
+           wiz.PrintCastableSpells();
+           wiz.PrintTalents();*/
 
-            Wizard wiz = new Wizard(5);
-            wiz.PrintCastableSpells();
-            wiz.PrintTalents();
+            SkillsManager skill = new SkillsManager();
+                skill.PrintList();
+                skill.SearchSkill("Ride");
+                skill.PrintInfo();
+                skill.PrintMod();
         }
     }
 }

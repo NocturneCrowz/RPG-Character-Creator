@@ -9,10 +9,12 @@
   <ItemGroup>
     <None Remove="Feats.txt" />
     <None Remove="Properties\Feats.txt" />
+    <None Remove="Skills.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Feats.txt" />
+    <EmbeddedResource Include="Skills.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +30,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Races\" />
   </ItemGroup>
 
 </Project>

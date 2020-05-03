@@ -73,7 +73,12 @@ namespace RPG_Character_Creator
             monk.PrintTalents();
             monk.PrintStats();
 
+            monk.ChangeBaseStat("Dexterity");
+            monk.PrintStats();
 
+            Wizard wiz = new Wizard(5);
+            wiz.PrintCastableSpells();
+            wiz.PrintTalents();
         }
     }
 }

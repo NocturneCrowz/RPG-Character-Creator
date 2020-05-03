@@ -141,9 +141,31 @@ namespace RPG_Character_Creator
             }
         }// PrintCastableSpells
 
+        public void ChangeBaseStat(string s)
+        {
+            int value;
+            this.statistics.TryGetValue(s, out value);
+            this.statistics.Remove(s);
+            this.statistics.Add(s, value+1);
+            if (s == "Dexterity")
+            {
+                this.armorClass = 10 + Convert.ToInt32((value - 10) / 2);
+                this.reflex = Convert.ToInt32((value - 10) / 2);
+            }
+            else if (s == "Constitution")
+            {
+                this.fortitude = Convert.ToInt32((value - 10) / 2);
+            }
+            else if (s == "Wisdom")
+            {
+                this.will = Convert.ToInt32((value - 10) / 2);
+            }
+        }// ChangeBaseStat
+
         public CharacterCombat()
         { 
             this.statistics = new Dictionary<string, int>();
+            this.castableSpells = new Dictionary<string, int>();
             int res = 0;
             for (int i = 0; i < 6;)
             {

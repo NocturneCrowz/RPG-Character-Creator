@@ -6,8 +6,8 @@ namespace RPG_Character_Creator
 {
     class Paladin : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> { "Animal Companion", "Nature Sense", "Wild Empathy" };
-        private int hitDie = 8;
+        private List<string> baseTalents = new List<string> { "Aura of Good", "Detect Evil", "Smite Evil" };
+        private int hitDie = 10;
         private int lvl;
         private int bonusFeat = 0;
 
@@ -76,7 +76,7 @@ namespace RPG_Character_Creator
 
 
 
-        }
+        }//HPInfo
         public Paladin(int lvl)
         {
             this.lvl = lvl;
@@ -85,58 +85,53 @@ namespace RPG_Character_Creator
                 case 1:
                     UpdateStat(2, "fortitude");
                     UpdateStat(0, "reflex");
-                    UpdateStat(2, "will");
-                    UpdateStat(0, "bab");
-                    AddSpell(3, "Level 0");
-                    AddSpell(1, "Level 1");
+                    UpdateStat(0, "will");
+                    UpdateStat(1, "bab");
                     break;
                 case 2:
                     UpdateStat(3, "fortitude");
                     UpdateStat(0, "reflex");
-                    UpdateStat(3, "will");
-                    UpdateStat(1, "bab");
-                    AddSpell(4, "Level 0");
-                    AddSpell(2, "Level 1");
-                    this.baseTalents.Add("Woodland Stride");
+                    UpdateStat(0, "will");
+                    UpdateStat(2, "bab");
+                    this.baseTalents.Add("Divine Grace");
+                    this.baseTalents.Add("Lay on Hands");
                     break;
                 case 3:
                     UpdateStat(3, "fortitude");
                     UpdateStat(1, "reflex");
-                    UpdateStat(3, "will");
-                    UpdateStat(2, "bab");
-                    AddSpell(4, "Level 0");
-                    AddSpell(2, "Level 1");
-                    AddSpell(1, "Level 2");
-                    this.baseTalents.Add("Woodland Stride");
-                    this.baseTalents.Add("Trackless Step");
+                    UpdateStat(1, "will");
+                    UpdateStat(3, "bab");
+                    this.baseTalents.Add("Divine Grace");
+                    this.baseTalents.Add("Lay on Hands");
+                    this.baseTalents.Add("Aura of Courage");
+                    this.baseTalents.Add("Divine Health");
                     this.bonusFeat++;
                     break;
                 case 4:
                     UpdateStat(4, "fortitude");
                     UpdateStat(1, "reflex");
-                    UpdateStat(4, "will");
-                    UpdateStat(3, "bab");
-                    AddSpell(5, "Level 0");
-                    AddSpell(3, "Level 1");
-                    AddSpell(2, "Level 2");
-                    this.baseTalents.Add("Woodland Stride");
-                    this.baseTalents.Add("Trackless Step");
-                    this.baseTalents.Add("Resist Nature's Lure");
+                    UpdateStat(1, "will");
+                    UpdateStat(4, "bab");
+                    AddSpell(0, "Level 1");
+                    this.baseTalents.Add("Divine Grace");
+                    this.baseTalents.Add("Lay on Hands");
+                    this.baseTalents.Add("Aura of Courage");
+                    this.baseTalents.Add("Divine Health");
+                    this.baseTalents.Add("Turn Undead");
                     this.bonusFeat++;
                     break;
                 case 5:
                     UpdateStat(4, "fortitude");
                     UpdateStat(1, "reflex");
-                    UpdateStat(4, "will");
-                    UpdateStat(3, "bab");
-                    AddSpell(5, "Level 0");
-                    AddSpell(3, "Level 1");
-                    AddSpell(2, "Level 2");
-                    AddSpell(1, "Level 3");
-                    this.baseTalents.Add("Woodland Stride");
-                    this.baseTalents.Add("Trackless Step");
-                    this.baseTalents.Add("Resist Nature's Lure");
-                    this.baseTalents.Add("Wild Shape");
+                    UpdateStat(1, "will");
+                    UpdateStat(5, "bab");
+                    AddSpell(0, "Level 1");
+                    this.baseTalents.Add("Divine Grace");
+                    this.baseTalents.Add("Lay on Hands");
+                    this.baseTalents.Add("Aura of Courage");
+                    this.baseTalents.Add("Divine Health");
+                    this.baseTalents.Add("Turn Undead");
+                    this.baseTalents.Add("Special Mount");
                     this.bonusFeat++;
                     break;
                 default:

@@ -6,18 +6,13 @@ namespace RPG_Character_Creator
 {
     class Paladin : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> { "Aura of Good", "Detect Evil", "Smite Evil" };
+        private List<string> feats = new List<string> { "Aura of Good", "Detect Evil", "Smite Evil" };
         private int hitDie = 10;
         private int lvl;
-        private int bonusFeat = 0;
 
-        public int GetBonusFeat()
-        {
-            return this.bonusFeat;
-        }// GetBonusFeat
         public void PrintTalents()
         {
-            baseTalents.ForEach(action: Console.WriteLine);
+            feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
@@ -57,10 +52,9 @@ namespace RPG_Character_Creator
                             for (int i = 0; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
-                                Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(GetStat("hp"));
                             }
                             UpdateStat(hpUpdate, "hp");
+                            Console.WriteLine("Your HP is: " + GetStat("hp"));
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
@@ -77,6 +71,10 @@ namespace RPG_Character_Creator
 
 
         }//HPInfo
+        public void AddFeat(string s)
+        {
+            this.feats.Add(s);
+        }// AddFeat
         public Paladin(int lvl)
         {
             this.lvl = lvl;
@@ -93,19 +91,19 @@ namespace RPG_Character_Creator
                     UpdateStat(0, "reflex");
                     UpdateStat(0, "will");
                     UpdateStat(2, "bab");
-                    this.baseTalents.Add("Divine Grace");
-                    this.baseTalents.Add("Lay on Hands");
+                    this.feats.Add("Divine Grace");
+                    this.feats.Add("Lay on Hands");
                     break;
                 case 3:
                     UpdateStat(3, "fortitude");
                     UpdateStat(1, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(3, "bab");
-                    this.baseTalents.Add("Divine Grace");
-                    this.baseTalents.Add("Lay on Hands");
-                    this.baseTalents.Add("Aura of Courage");
-                    this.baseTalents.Add("Divine Health");
-                    this.bonusFeat++;
+                    this.feats.Add("Divine Grace");
+                    this.feats.Add("Lay on Hands");
+                    this.feats.Add("Aura of Courage");
+                    this.feats.Add("Divine Health");
+                    AddBonusFeat();
                     break;
                 case 4:
                     UpdateStat(4, "fortitude");
@@ -113,12 +111,12 @@ namespace RPG_Character_Creator
                     UpdateStat(1, "will");
                     UpdateStat(4, "bab");
                     AddSpell(0, "Level 1");
-                    this.baseTalents.Add("Divine Grace");
-                    this.baseTalents.Add("Lay on Hands");
-                    this.baseTalents.Add("Aura of Courage");
-                    this.baseTalents.Add("Divine Health");
-                    this.baseTalents.Add("Turn Undead");
-                    this.bonusFeat++;
+                    this.feats.Add("Divine Grace");
+                    this.feats.Add("Lay on Hands");
+                    this.feats.Add("Aura of Courage");
+                    this.feats.Add("Divine Health");
+                    this.feats.Add("Turn Undead");
+                    AddBonusFeat();
                     break;
                 case 5:
                     UpdateStat(4, "fortitude");
@@ -126,13 +124,13 @@ namespace RPG_Character_Creator
                     UpdateStat(1, "will");
                     UpdateStat(5, "bab");
                     AddSpell(0, "Level 1");
-                    this.baseTalents.Add("Divine Grace");
-                    this.baseTalents.Add("Lay on Hands");
-                    this.baseTalents.Add("Aura of Courage");
-                    this.baseTalents.Add("Divine Health");
-                    this.baseTalents.Add("Turn Undead");
-                    this.baseTalents.Add("Special Mount");
-                    this.bonusFeat++;
+                    this.feats.Add("Divine Grace");
+                    this.feats.Add("Lay on Hands");
+                    this.feats.Add("Aura of Courage");
+                    this.feats.Add("Divine Health");
+                    this.feats.Add("Turn Undead");
+                    this.feats.Add("Special Mount");
+                    AddBonusFeat();
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

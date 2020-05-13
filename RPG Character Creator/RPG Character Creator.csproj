@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Feats.txt" />
-    <EmbeddedResource Include="Skills.txt" />
+    <EmbeddedResource Include="FIles\Feats.txt" />
+    <EmbeddedResource Include="FIles\Skills.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +30,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Races\" />
   </ItemGroup>
 
 </Project>

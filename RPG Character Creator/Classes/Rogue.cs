@@ -6,18 +6,13 @@ namespace RPG_Character_Creator
 {
     class Rogue : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> { "Sneak Attack", "Trapfinding" };
+        private List<string> feats = new List<string> { "Sneak Attack", "Trapfinding" };
         private int hitDie = 6;
         private int lvl;
-        private int bonusFeat = 0;
 
-        public int GetBonusFeat()
-        {
-            return this.bonusFeat;
-        }// GetBonusFeat
         public void PrintTalents()
         {
-            baseTalents.ForEach(action: Console.WriteLine);
+            feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
@@ -57,10 +52,9 @@ namespace RPG_Character_Creator
                             for (int i = 0; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
-                                Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(GetStat("hp"));
                             }
                             UpdateStat(hpUpdate, "hp");
+                            Console.WriteLine("Your HP is: " + GetStat("hp"));
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
@@ -76,7 +70,11 @@ namespace RPG_Character_Creator
 
 
 
-        }
+        }// HPInfo
+        public void AddFeat(string s)
+        {
+            this.feats.Add(s);
+        }// AddFeat
         public Rogue(int lvl)
         {
             this.lvl = lvl;
@@ -93,7 +91,7 @@ namespace RPG_Character_Creator
                     UpdateStat(3, "reflex");
                     UpdateStat(0, "will");
                     UpdateStat(1, "bab");
-                    this.baseTalents.Add("Evasion");
+                    this.feats.Add("Evasion");
                     break;
                 case 3:
                     UpdateStat(1, "fortitude");
@@ -101,26 +99,26 @@ namespace RPG_Character_Creator
                     UpdateStat(1, "will");
                     UpdateStat(2, "bab");
                     AddSpell(4, "Level 0");
-                    this.baseTalents.Add("Evasion");
-                    this.bonusFeat++;
+                    this.feats.Add("Evasion");
+                    AddBonusFeat();
                     break;
                 case 4:
                     UpdateStat(1, "fortitude");
                     UpdateStat(4, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(3, "bab");
-                    this.baseTalents.Add("Evasion");
-                    this.baseTalents.Add("Uncanny Dodge");
-                    this.bonusFeat++;
+                    this.feats.Add("Evasion");
+                    this.feats.Add("Uncanny Dodge");
+                    AddBonusFeat();
                     break;
                 case 5:
                     UpdateStat(1, "fortitude");
                     UpdateStat(4, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(3, "bab");
-                    this.baseTalents.Add("Evasion");
-                    this.baseTalents.Add("Uncanny Dodge");
-                    this.bonusFeat++;
+                    this.feats.Add("Evasion");
+                    this.feats.Add("Uncanny Dodge");
+                    AddBonusFeat();
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

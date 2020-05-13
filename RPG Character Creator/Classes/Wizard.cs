@@ -6,18 +6,13 @@ namespace RPG_Character_Creator
 {
     class Wizard : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> { "Summon Familiar", "Scribe Scroll" };
+        private List<string> feats = new List<string> { "Summon Familiar", "Scribe Scroll" };
         private int hitDie = 4;
         private int lvl;
-        private int bonusFeat = 0;
 
-        public int GetBonusFeat()
-        {
-            return this.bonusFeat;
-        }// GetBonusFeat
         public void PrintTalents()
         {
-            baseTalents.ForEach(action: Console.WriteLine);
+            feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
@@ -57,10 +52,9 @@ namespace RPG_Character_Creator
                             for (int i = 0; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
-                                Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(GetStat("hp"));
                             }
                             UpdateStat(hpUpdate, "hp");
+                            Console.WriteLine("Your HP is: " + GetStat("hp"));
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
@@ -72,11 +66,11 @@ namespace RPG_Character_Creator
                 }
 
             } while (res < 1 || res > 3);
-
-
-
-
-        }
+        }// HPInfo
+        public void AddFeat(string s)
+        {
+            this.feats.Add(s);
+        }// AddFeat
         public Wizard(int lvl)
         {
             this.lvl = lvl;
@@ -106,7 +100,7 @@ namespace RPG_Character_Creator
                     AddSpell(4, "Level 0");
                     AddSpell(2, "Level 1");
                     AddSpell(1, "Level 2");
-                    this.bonusFeat++;
+                    AddBonusFeat();
                     break;
                 case 4:
                     UpdateStat(1, "fortitude");
@@ -116,7 +110,7 @@ namespace RPG_Character_Creator
                     AddSpell(4, "Level 0");
                     AddSpell(3, "Level 1");
                     AddSpell(2, "Level 2");
-                    this.bonusFeat++;
+                    AddBonusFeat();
                     break;
                 case 5:
                     UpdateStat(1, "fortitude");
@@ -127,8 +121,8 @@ namespace RPG_Character_Creator
                     AddSpell(3, "Level 1");
                     AddSpell(2, "Level 2");
                     AddSpell(1, "Level 3");
-                    this.bonusFeat++;
-                    this.bonusFeat++;
+                    AddBonusFeat();
+                    AddBonusFeat();
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

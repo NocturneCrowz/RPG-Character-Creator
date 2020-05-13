@@ -6,18 +6,13 @@ namespace RPG_Character_Creator
 {
     class Ranger : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> { "1st Favored Enemy", "Track", "Wild Empathy" };
+        private List<string> feats = new List<string> { "1st Favored Enemy", "Track", "Wild Empathy" };
         private int hitDie = 8;
         private int lvl;
-        private int bonusFeat = 0;
 
-        public int GetBonusFeat()
-        {
-            return this.bonusFeat;
-        }// GetBonusFeat
         public void PrintTalents()
         {
-            baseTalents.ForEach(action: Console.WriteLine);
+            feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
@@ -57,10 +52,9 @@ namespace RPG_Character_Creator
                             for (int i = 0; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
-                                Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(GetStat("hp"));
                             }
                             UpdateStat(hpUpdate, "hp");
+                            Console.WriteLine("Your HP is: " + GetStat("hp"));
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
@@ -76,7 +70,11 @@ namespace RPG_Character_Creator
 
 
 
-        }
+        }// HPInfo
+        public void AddFeat(string s)
+        {
+            this.feats.Add(s);
+        }// AddFeat
         public Ranger(int lvl)
         {
             this.lvl = lvl;
@@ -93,16 +91,16 @@ namespace RPG_Character_Creator
                     UpdateStat(3, "reflex");
                     UpdateStat(0, "will");
                     UpdateStat(2, "bab");
-                    this.baseTalents.Add("Combat Style");
+                    this.feats.Add("Combat Style");
                     break;
                 case 3:
                     UpdateStat(3, "fortitude");
                     UpdateStat(3, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(3, "bab");
-                    this.baseTalents.Add("Combat Style");
-                    this.baseTalents.Add("Endurance");
-                    this.bonusFeat++;
+                    this.feats.Add("Combat Style");
+                    this.feats.Add("Endurance");
+                    AddBonusFeat();
                     break;
                 case 4:
                     UpdateStat(4, "fortitude");
@@ -110,10 +108,10 @@ namespace RPG_Character_Creator
                     UpdateStat(1, "will");
                     UpdateStat(4, "bab");
                     AddSpell(0, "Level 1");
-                    this.baseTalents.Add("Combat Style");
-                    this.baseTalents.Add("Endurance");
-                    this.baseTalents.Add("Animal Companion");
-                    this.bonusFeat++;
+                    this.feats.Add("Combat Style");
+                    this.feats.Add("Endurance");
+                    this.feats.Add("Animal Companion");
+                    AddBonusFeat();
                     break;
                 case 5:
                     UpdateStat(4, "fortitude");
@@ -121,11 +119,11 @@ namespace RPG_Character_Creator
                     UpdateStat(1, "will");
                     UpdateStat(5, "bab");
                     AddSpell(0, "Level 1");
-                    this.baseTalents.Add("Combat Style");
-                    this.baseTalents.Add("Endurance");
-                    this.baseTalents.Add("Animal Companion");
-                    this.baseTalents.Add("2nd Favored Enemy");
-                    this.bonusFeat++;
+                    this.feats.Add("Combat Style");
+                    this.feats.Add("Endurance");
+                    this.feats.Add("Animal Companion");
+                    this.feats.Add("2nd Favored Enemy");
+                    AddBonusFeat();
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

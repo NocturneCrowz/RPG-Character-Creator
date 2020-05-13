@@ -15,6 +15,18 @@ namespace RPG_Character_Creator
         private int hp;
         private int bab;
         private Dictionary<string, int> castableSpells;
+        private int bonusFeat = 0;
+
+        public int GetBonusFeat()
+        {
+            return this.bonusFeat;
+        }// GetBonusFeat
+        
+        public void AddBonusFeat()
+        {
+            this.bonusFeat++;
+        }// UpdateFeat
+
         public void PrintStats()
         {
             foreach (KeyValuePair<string, int> kvp in this.statistics)
@@ -141,12 +153,12 @@ namespace RPG_Character_Creator
             }
         }// PrintCastableSpells
 
-        public void ChangeBaseStat(string s)
+        public void ChangeBaseStat(string s, int n)
         {
             int value;
             this.statistics.TryGetValue(s, out value);
             this.statistics.Remove(s);
-            this.statistics.Add(s, value+1);
+            this.statistics.Add(s, value + n);
             if (s == "Dexterity")
             {
                 this.armorClass = 10 + Convert.ToInt32((value - 10) / 2);

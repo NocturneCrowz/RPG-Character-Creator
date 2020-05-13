@@ -15,7 +15,7 @@ namespace RPG_Character_Creator
 
         private void OpenFile()
         {
-            var fileName = "RPG_Character_Creator.Skills.txt";
+            var fileName = "RPG_Character_Creator.Files.Skills.txt";
             var assembly = Assembly.GetExecutingAssembly();
             Stream stream = assembly.GetManifestResourceStream(fileName);
             this.file = new StreamReader(stream);
@@ -68,7 +68,6 @@ namespace RPG_Character_Creator
             file.Close();
         }// SearchSkill
 
-
         public void PrintInfo()
         {
             if (this.skillLine == null)
@@ -100,12 +99,14 @@ namespace RPG_Character_Creator
         public SkillsManager()
         {
             // File Path attributes
-            var fileName = "RPG_Character_Creator.Skills.txt";
+            var fileName = "RPG_Character_Creator.Files.Skills.txt";
             var assembly = Assembly.GetExecutingAssembly();
             Stream stream = assembly.GetManifestResourceStream(fileName);
+
             // Class attributes
             this.skillLine = null;
             this.listOfSkills = new Dictionary<string, string>();
+
             // Loading the File text
             try
             {

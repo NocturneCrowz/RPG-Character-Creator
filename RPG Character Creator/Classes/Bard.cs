@@ -6,18 +6,13 @@ namespace RPG_Character_Creator
 {
     class Bard : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> { "Bardic Music", "Bardic Knowledge", "Countersong", "Fascinate" };
+        private List<string> feats = new List<string> { "Bardic Music", "Bardic Knowledge", "Countersong", "Fascinate" };
         private int hitDie = 6;
         private int lvl;
-        private int bonusFeat = 0;
 
-        public int GetBonusFeat()
-        {
-            return this.bonusFeat;
-        }// GetBonusFeat
         public void PrintTalents()
         {
-            baseTalents.ForEach(action: Console.WriteLine);
+            feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
@@ -57,10 +52,9 @@ namespace RPG_Character_Creator
                             for (int i = 0; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
-                                Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(GetStat("hp"));
                             }
                             UpdateStat(hpUpdate, "hp");
+                            Console.WriteLine("Your HP is: " + GetStat("hp"));
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
@@ -76,7 +70,13 @@ namespace RPG_Character_Creator
 
 
 
-        }
+        }// HPInfo
+
+        public void AddFeat(string s)
+        {
+            this.feats.Add(s);
+        }// AddFeat
+
         public Bard(int lvl)
         {
             this.lvl = lvl;
@@ -104,8 +104,8 @@ namespace RPG_Character_Creator
                     UpdateStat(2, "bab");
                     AddSpell(3, "Level 0");
                     AddSpell(1, "Level 1");
-                    this.baseTalents.Add("Inspire Competence");
-                    this.bonusFeat++;
+                    this.feats.Add("Inspire Competence");
+                    AddBonusFeat();
                     break;
                 case 4:
                     UpdateStat(1, "fortitude");
@@ -115,8 +115,8 @@ namespace RPG_Character_Creator
                     AddSpell(3, "Level 0");
                     AddSpell(2, "Level 1");
                     AddSpell(0, "Level 2");
-                    this.bonusFeat++;
-                    this.baseTalents.Add("Inspire Competence");
+                    AddBonusFeat();
+                    this.feats.Add("Inspire Competence");
                     break;
                 case 5:
                     UpdateStat(1, "fortitude");
@@ -126,8 +126,8 @@ namespace RPG_Character_Creator
                     AddSpell(3, "Level 0");
                     AddSpell(3, "Level 1");
                     AddSpell(1, "Level 2");
-                    this.baseTalents.Add("Inspire Competence");
-                    this.bonusFeat++;
+                    this.feats.Add("Inspire Competence");
+                    AddBonusFeat();
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

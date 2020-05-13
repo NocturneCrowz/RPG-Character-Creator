@@ -6,18 +6,13 @@ namespace RPG_Character_Creator
 {
     class Barbarian : CharacterCombat
     {
-        private List<string> baseTalents = new List<string> {"Fast Movement", "Illiteracy", "Rage" };
+        private List<string> feats = new List<string> {"Fast Movement", "Illiteracy", "Rage"};
         private int hitDie = 12;
         private int lvl;
-        private int bonusFeat = 0;
-
-        public int GetBonusFeat()
-        {
-            return this.bonusFeat;
-        }// GetBonusFeat
+ 
         public void PrintTalents()
         {
-            baseTalents.ForEach(action: Console.WriteLine);
+            feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
@@ -57,10 +52,9 @@ namespace RPG_Character_Creator
                             for (int i = 0; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
-                                Console.WriteLine(GetModifier("Constitution"));
-                                Console.WriteLine(GetStat("hp"));
                             }
                             UpdateStat(hpUpdate, "hp");
+                            Console.WriteLine("Your HP is: " + GetStat("hp"));
                             break;
                         case 3:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
@@ -77,6 +71,10 @@ namespace RPG_Character_Creator
 
 
         }// HPInfo
+        public void AddFeat(string s)
+        {
+            this.feats.Add(s);
+        }// AddFeat
         public Barbarian(int lvl)
         {
             this.lvl = lvl;
@@ -93,32 +91,32 @@ namespace RPG_Character_Creator
                     UpdateStat(0, "reflex");
                     UpdateStat(0, "will");
                     UpdateStat(2, "bab");
-                    this.baseTalents.Add("Uncanny Dodge");
+                    this.feats.Add("Uncanny Dodge");
                     break;
                 case 3:
                     UpdateStat(3, "fortitude");
                     UpdateStat(1, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(3, "bab");
-                    this.baseTalents.Add("Uncanny Dodge");
-                    this.bonusFeat++;
+                    AddBonusFeat();
+                    this.feats.Add("Uncanny Dodge");
                     break;
                 case 4:
                     UpdateStat(4, "fortitude");
                     UpdateStat(1, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(4, "bab");
-                    this.baseTalents.Add("Uncanny Dodge");
-                    this.bonusFeat++;
+                    this.feats.Add("Uncanny Dodge");
+                    AddBonusFeat();
                     break;
                 case 5:
                     UpdateStat(5, "fortitude");
                     UpdateStat(1, "reflex");
                     UpdateStat(1, "will");
                     UpdateStat(5, "bab");
-                    this.baseTalents.Add("Uncanny Dodge");
-                    this.baseTalents.Add("Improved Uncanny Dodge");
-                    this.bonusFeat++;
+                    this.feats.Add("Uncanny Dodge");
+                    this.feats.Add("Improved Uncanny Dodge");
+                    AddBonusFeat();
                     break;
                 default:
                     Console.WriteLine("Whoops. Something went wrong.");

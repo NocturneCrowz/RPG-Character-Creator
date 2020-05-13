@@ -82,11 +82,37 @@ namespace RPG_Character_Creator
            wiz.PrintCastableSpells();
            wiz.PrintTalents();*/
 
-            SkillsManager skill = new SkillsManager();
+            /*SkillsManager skill = new SkillsManager();
                 skill.PrintList();
                 skill.SearchSkill("Ride");
                 skill.PrintInfo();
                 skill.PrintMod();
+            Druid info = new Druid(5);
+            int asd = info.GetBonusFeat();
+            for (int i = 0; i < asd; i++)
+                info.AddFeat(Cons/*ole.ReadLine());
+            info.PrintTalents();*/
+            /* FeatsManager feat = new FeatsManager();
+             feat.SearchFeat("Silent spell");
+             feat.PrintBonus();
+             feat.PrintInfo();
+             feat.PrintList();
+             feat.PrintReq();*/
+
+            Fighter fighter = new Fighter(5);
+            fighter.HPInfo();
+            fighter.PrintCastableSpells();
+            fighter.PrintStats();
+            fighter.PrintTalents();
+            fighter.HPInfo();
+            Dwarf dwarf = new Dwarf(fighter);
+            fighter.HPInfo();
+            fighter.PrintCastableSpells();
+            fighter.PrintStats();
+            fighter.PrintTalents();
+            fighter.HPInfo();
+
+
         }
     }
 }

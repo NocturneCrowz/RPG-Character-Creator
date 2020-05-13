@@ -23,7 +23,7 @@ namespace RPG_Character_Creator
             }
 
             return res;    
-        } //Roll
+        }// Roll
 
         public int RollAndPrint(int n)
         {
@@ -39,6 +39,6 @@ namespace RPG_Character_Creator
             }
 
             return res;
-        }
+        }// RollAndPrint
     } //Class
 } //Namespace

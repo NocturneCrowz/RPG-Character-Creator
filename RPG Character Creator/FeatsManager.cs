@@ -15,11 +15,11 @@ namespace RPG_Character_Creator
 
         private void OpenFile()
         {
-            var fileName = "RPG_Character_Creator.Feats.txt";
+            var fileName = "RPG_Character_Creator.Files.Feats.txt";
             var assembly = Assembly.GetExecutingAssembly();
             Stream stream = assembly.GetManifestResourceStream(fileName);
             this.file = new StreamReader(stream);
-        }
+        }// OpenFile
         // List of feats
         public void PrintList()
         {
@@ -46,6 +46,7 @@ namespace RPG_Character_Creator
         // Search a feat function
         public void SearchFeat(string keyword)
         {
+            this.featLine = null;
             string ln;
             Console.WriteLine("Searching into the void...");
             OpenFile();
@@ -65,8 +66,7 @@ namespace RPG_Character_Creator
             // Insuccesful search
             Console.WriteLine("It seems like I wasn't able to find your feat. Sadly my AI is not that great, blame the developer!");
             file.Close();
-        }// SAF
-
+        }// SearchAFeat
 
         public void PrintInfo()
         {
@@ -112,11 +112,10 @@ namespace RPG_Character_Creator
         }// PrintBonus
 
         // Public costructor to initialize the file
-
         public FeatsManager()
         {
             // File Path attributes
-            var fileName = "RPG_Character_Creator.Feats.txt";
+            var fileName = "RPG_Character_Creator.Files.Feats.txt";
             var assembly = Assembly.GetExecutingAssembly();
             Stream stream = assembly.GetManifestResourceStream(fileName);
             // Class attributes

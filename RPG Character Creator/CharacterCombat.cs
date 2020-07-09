@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RPG_Character_Creator
 {
-    class CharacterCombat
+    public class CharacterCombat
     {
         private Dictionary<string, int> statistics;
         private readonly string[] stats = new string[6] { "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma" };
@@ -130,9 +130,10 @@ namespace RPG_Character_Creator
         {
             int value;
             this.statistics.TryGetValue(name, out value);
-            
-            return (value -10)/2;
-
+            if (value >= 10)
+                return (value - 10) / 2;
+            else
+                return (int)((((double)value - 10.0) / 2) - 0.5);
         }// GetModifier
 
         protected void AddSpell(int n, string s)
@@ -174,10 +175,8 @@ namespace RPG_Character_Creator
             }
         }// ChangeBaseStat
 
-        public CharacterCombat()
-        { 
-            this.statistics = new Dictionary<string, int>();
-            this.castableSpells = new Dictionary<string, int>();
+        public void InsertBaseStat()
+        {
             int res = 0;
             for (int i = 0; i < 6;)
             {
@@ -210,16 +209,16 @@ namespace RPG_Character_Creator
                             this.statistics.Add(stats[i], value);
                             if (i == 1)
                             {
-                                this.armorClass = 10 + Convert.ToInt32((value-10) / 2);
-                                this.reflex = Convert.ToInt32((value - 10) / 2);
+                                UpdateStat(GetModifier("Dexterity"), "armorClass");
+                                UpdateStat(GetModifier("Dexterity"), "Reflex");
                             }
                             else if (i == 2)
                             {
-                                this.fortitude = Convert.ToInt32((value - 10) / 2);
+                                UpdateStat(GetModifier("Constitution"), "fortitude");
                             }
                             else if (i == 4)
                             {
-                                this.will = Convert.ToInt32((value - 10) / 2);
+                                UpdateStat(GetModifier("Wisdom"), "will");
                             }
                             res = 1;
                             i++;
@@ -227,6 +226,12 @@ namespace RPG_Character_Creator
                     }
                 } while (res == 0);
             }// For cycle
+        }// InsertBaseStat
+
+        public CharacterCombat()
+        { 
+            this.statistics = new Dictionary<string, int>();
+            this.castableSpells = new Dictionary<string, int>();
         }// BaseClass
     }// Class
 }// Namespace

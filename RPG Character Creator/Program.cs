@@ -99,7 +99,7 @@ namespace RPG_Character_Creator
              feat.PrintList();
              feat.PrintReq();*/
 
-            Fighter fighter = new Fighter(5);
+            /*Fighter fighter = new Fighter(5);
             fighter.HPInfo();
             fighter.PrintCastableSpells();
             fighter.PrintStats();
@@ -110,8 +110,10 @@ namespace RPG_Character_Creator
             fighter.PrintCastableSpells();
             fighter.PrintStats();
             fighter.PrintTalents();
-            fighter.HPInfo();
+            fighter.HPInfo();*/
 
+            GuidedGenerator.Generate();
+            Barbarian barb = new Barbarian(2)
 
         }
     }

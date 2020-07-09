@@ -49,9 +49,9 @@ namespace RPG_Character_Creator
                         case 2:
                             Console.WriteLine("As you prefer! Randomly generating HP value, stand by!");
                             DiceRoll dice = new DiceRoll();
-                            int hpUpdate = 0;
+                            int hpUpdate = this.hitDie + GetModifier("Constitution");
                             UpdateStat(hpUpdate, "hp");
-                            for (int i = 0; i < this.lvl; i++)
+                            for (int i = 1; i < this.lvl; i++)
                             {
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
                             }

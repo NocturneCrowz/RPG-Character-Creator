@@ -6,20 +6,25 @@ namespace RPG_Character_Creator
 {
     class Fighter : CharacterCombat
     {
-        private List<string> feats = new List<string> {"The fighter has no Base Talent"};
-        private int hitDie = 10;
+        private List<string> feats = new List<string> { };
+        private readonly int hitDie = 10;
         private int lvl;
 
+        public List<string> GetTalents()
+        {
+            return this.feats;
+        }
         public void PrintTalents()
         {
+            if (feats.Count == 0)
+                Console.WriteLine("You don't have any talent yet!");
             feats.ForEach(action: Console.WriteLine);
         }// PrintTalents
         public void HPInfo()
         {
-            Console.WriteLine("You just entered the Hit Point manager! What would you do?");
-            Console.WriteLine("1- Print HP.");
-            Console.WriteLine("2- Generate HP randomly.");
-            Console.WriteLine("3- Insert HP value.");
+            Console.WriteLine("How do you want to manage your HP value?");
+            Console.WriteLine("1- Generate HP randomly.");
+            Console.WriteLine("2- Insert HP value.");
 
             int res = 0;
             do
@@ -33,7 +38,7 @@ namespace RPG_Character_Creator
                     Console.WriteLine("Uh oh, something went wrong.");
                 }
 
-                if (res < 1 || res > 3)
+                if (res < 1 || res > 2)
                 {
                     Console.WriteLine("Sadly, that is not a valid enter. Please, try again.");
                 }
@@ -42,36 +47,44 @@ namespace RPG_Character_Creator
                     switch (res)
                     {
                         case 1:
-                            Console.WriteLine("The value of your HP is: " + GetStat("hp"));
-                            break;
-                        case 2:
-                            Console.WriteLine("As you prefer! Randomly generating HP value, stand by!");
+                            Console.WriteLine("Randomly generating HP value, stand by!");
                             DiceRoll dice = new DiceRoll();
                             int hpUpdate = this.hitDie + GetModifier("Constitution");
                             UpdateStat(hpUpdate, "hp");
                             for (int i = 1; i < this.lvl; i++)
                             {
+                                Console.WriteLine("Your current HP is: " + hpUpdate + ". Rolling the " + (i + 1) + " dice.");
                                 hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
                             }
                             UpdateStat(hpUpdate, "hp");
-                            Console.WriteLine("Your HP is: " + GetStat("hp"));
+                            Console.WriteLine("Your total HP is: " + GetStat("hp"));
                             break;
-                        case 3:
+                        case 2:
                             Console.WriteLine("Ok, insert now the value of your total HP: ");
                             UpdateStat(Convert.ToInt32(Console.ReadLine()), "hp");
                             break;
                         default:
+                            Console.WriteLine("Something happened, and your HP just vanished. Try again!");
                             break;
                     }
                 }
 
             } while (res < 1 || res > 3);
 
-
-
-
         }// HPInfo
-
+        public void HPrnd()
+        {
+            Console.WriteLine("Randomly generating HP value, stand by!");
+            DiceRoll dice = new DiceRoll();
+            int hpUpdate = this.hitDie + GetModifier("Constitution");
+            UpdateStat(hpUpdate, "hp");
+            for (int i = 1; i < this.lvl; i++)
+            {
+                hpUpdate += dice.Roll(this.hitDie) + GetModifier("Constitution");
+            }
+            UpdateStat(hpUpdate, "hp");
+            Console.WriteLine("Your total HP is: " + GetStat("hp"));
+        }// HPrnd
         public void AddFeat(string s)
         {
             this.feats.Add(s);

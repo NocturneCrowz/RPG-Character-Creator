@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -8,18 +9,26 @@ namespace RPG_Character_Creator
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to RPG Character Creator! \nThis software was developed by Barzotti Cristian.");
+            Console.WriteLine("\nDisclaimer!\nThis software is free to use and it's not intended as a substitute of the \nRoleplaying Game Core Book published by Wizards of the Coast, Inc.!");
+            Console.WriteLine("The information inside this software were taken from https://www.d20srd.org/index.htm");
+            Console.WriteLine("I do not own any of the informations inside this software.");
 
-            //https://www.d20srd.org/index.htm
-            // dice roll, working
-            /*DiceRoll rnd = new DiceRoll();
-            int diceRoll = -1;
-            Console.WriteLine("Choose a number:");
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
+
+            Console.WriteLine("Ehy you, you are finally ready!\nLet me introduce you to this software.");
+            Console.WriteLine("With this software, you too will be able to create your own RPG Character! \nEither randomly or guided, the AI in this software is amazing!...ly stupid. I apologize.");
+            Console.WriteLine("Anyway, let's start. First of all, I will need to know how do you want to proceed. Do you want a:\n1- Randomly Created Character\n2- Create My Own Character");
+
+            int res = 0;
+            int choice = 0;
+            dynamic character = null;
+
             do
-            {
-                int value = 0;
+            { 
                 try
                 {
-                    value = Convert.ToInt32(Console.ReadLine());
+                    choice = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (FormatException)
                 {
@@ -33,87 +42,120 @@ namespace RPG_Character_Creator
                 }
                 finally
                 {
-                    if (value == 0)
+                    if (choice > 0 && choice < 3)
                     {
-                       Console.WriteLine("I wasn't able to finish the roll, try again! Choose a number: ");
+                        res = 1;
+                        Console.WriteLine("Amazing! Let's start!");
+                    }
+                    else
+                        Console.WriteLine("There was a problem selecting your option. Please, try again.");
+                }
+
+            } // Choice
+            while (res == 0);
+
+            // Here we create the character
+            if (choice == 1)
+                character = RandomGenerator.Generate();
+            else
+                character = GuidedGenerator.Generate();
+
+            // Some more info
+            CharacterInfo info = new CharacterInfo();
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
+
+            Console.WriteLine("Your character is almost done! I need only a few more info about it.\n");
+            Console.WriteLine("What is your name?");
+            info.Name = Console.ReadLine();
+            Console.WriteLine("When were you born? (Use xx/xx/xxxx format)");
+            info.DateOfBirth = Console.ReadLine();
+            Console.WriteLine("Where were you born?");
+            info.PlaceOfBirth = Console.ReadLine();
+            Console.WriteLine("How old you are?");
+            info.Age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("What is your sex?");
+            info.Sex = Console.ReadLine();
+            Console.WriteLine("How tall are you in cm?");
+            info.Height = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("How much do you weight?");
+            info.Weight = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("What is your muscolar size?");
+            info.Size = Console.ReadLine();
+            Console.WriteLine("And your skintone?");
+            info.SkinTone = Console.ReadLine();
+            Console.WriteLine("What's your hair color?");
+            info.Hair = Console.ReadLine();
+            Console.WriteLine("And your eyes color?");
+            info.Eyes = Console.ReadLine();
+
+            Console.WriteLine("Congrats! Your character is finally done!");
+            res = 0;
+            choice = 0;
+            do
+            {
+                Console.WriteLine("\n------------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine("Do you want to do something else before closing the program?\n1- Print my stat\n2- Print my talents\n3- Print my spells\n4- Create the .txt file and exit.");
+                try
+                {
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("It seems like you tried to insert one or more letters instead of an integer. You can't do that!");
+                    Console.WriteLine();
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("It seems like something went wrong. Try contacting the developer, but he won't know much more.");
+                    Console.WriteLine();
+                }
+                finally
+                {
+                    if (choice == 1)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("Strength: " + character.GetBaseStat("Strength"));
+                        Console.WriteLine("Dexterity: " + character.GetBaseStat("Dexterity"));
+                        Console.WriteLine("Constitution: " + character.GetBaseStat("Constitution"));
+                        Console.WriteLine("Intelligence: " + character.GetBaseStat("Intelligence"));
+                        Console.WriteLine("Wisdom: " + character.GetBaseStat("Wisdom"));
+                        Console.WriteLine("Charisma: " + character.GetBaseStat("Charisma"));
+                    }
+                    else if (choice == 2)
+                    {
+                        Console.WriteLine("");
+                        character.PrintTalents();
+                    }
+                    else if (choice == 3)
+                    {
+                        Console.WriteLine("");
+                        character.PrintCastableSpells();
+                    }
+                    else if (choice == 4)
+                    {
+                        res = 1;
+
+                        List<string> talents = character.GetTalents();
+
+                        Dictionary<string, int> spells = character.ReturnCastableSpells();
+
+                        WriteFile.Create(character, info, talents, spells);
                     }
                     else
                     {
-                       diceRoll = rnd.Roll(value);
-                       if (diceRoll == -1)
-                       {
-                           Console.WriteLine("Whoops! Your dice has fallen into a blackhole, recover it and try again! Choose a number: ");
-                       }
+                        Console.WriteLine("Seems like that choice is invalid. Please, try again.");
                     }
                 }
-            } while (diceRoll == -1);
-            Console.WriteLine(diceRoll);*/
 
-            // Talent search working
-            /*
-            while (true)
-            {
-                SearchAFeat search = new SearchAFeat();
-                search.PrintList();
-                Console.WriteLine("Insert a feat to search: ");
-                search.SAF(Console.ReadLine());
-                search.PrintInfo();
-                search.PrintReq();
-                search.PrintBonus();
+            } while (res == 0);
 
-            }
-            */
+            Console.WriteLine("\nThank you for using this software! We are done!");
 
-            //CharacterCombat ciao = new CharacterCombat();
-            /* Barbarian asd = new Barbarian(5);
-             asd.ChangeStat();
-             asd.PrintTalents();*/
-            /*
-           Monk monk = new Monk(5);
-           Console.WriteLine(monk.GetBonusFeat());
-           monk.PrintCastableSpells();
-           monk.PrintTalents();
-           monk.PrintStats();
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-           monk.ChangeBaseStat("Dexterity");
-           monk.PrintStats();
+            Console.WriteLine("A file has been created @:" + desktopPath + " named " + info.Name + ".txt");
 
-           Wizard wiz = new Wizard(5);
-           wiz.PrintCastableSpells();
-           wiz.PrintTalents();*/
-
-            /*SkillsManager skill = new SkillsManager();
-                skill.PrintList();
-                skill.SearchSkill("Ride");
-                skill.PrintInfo();
-                skill.PrintMod();
-            Druid info = new Druid(5);
-            int asd = info.GetBonusFeat();
-            for (int i = 0; i < asd; i++)
-                info.AddFeat(Cons/*ole.ReadLine());
-            info.PrintTalents();*/
-            /* FeatsManager feat = new FeatsManager();
-             feat.SearchFeat("Silent spell");
-             feat.PrintBonus();
-             feat.PrintInfo();
-             feat.PrintList();
-             feat.PrintReq();*/
-
-            /*Fighter fighter = new Fighter(5);
-            fighter.HPInfo();
-            fighter.PrintCastableSpells();
-            fighter.PrintStats();
-            fighter.PrintTalents();
-            fighter.HPInfo();
-            Dwarf dwarf = new Dwarf(fighter);
-            fighter.HPInfo();
-            fighter.PrintCastableSpells();
-            fighter.PrintStats();
-            fighter.PrintTalents();
-            fighter.HPInfo();*/
-
-            GuidedGenerator.Generate();
-            Barbarian barb = new Barbarian(2)
+            Console.WriteLine("See you next time!");
 
         }
     }

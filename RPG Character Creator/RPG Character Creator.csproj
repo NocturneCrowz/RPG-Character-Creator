@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="FIles\Feats.txt" />
-    <EmbeddedResource Include="FIles\Skills.txt" />
+    <EmbeddedResource Include="Files\Feats.txt" />
+    <EmbeddedResource Include="Files\Skills.txt" />
   </ItemGroup>
 
   <ItemGroup>

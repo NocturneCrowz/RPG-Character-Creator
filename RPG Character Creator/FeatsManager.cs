@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -68,6 +69,19 @@ namespace RPG_Character_Creator
             file.Close();
         }// SearchAFeat
 
+        public string RandomFeat()
+        {
+            string feat;
+            int n;
+            Random rnd = new Random();
+
+            n = listOfFeats.Count;
+
+            feat = listOfFeats.ElementAt(rnd.Next(1, n)).Key;
+
+            return feat;
+        }
+        // Printinf feat info
         public void PrintInfo()
         {
             if (this.featLine == null)
@@ -83,6 +97,7 @@ namespace RPG_Character_Creator
             
         }// PrintInfo
 
+        // Printing feat requisite
         public void PrintReq()
         {
             if (this.featLine == null)
@@ -97,6 +112,7 @@ namespace RPG_Character_Creator
             }
         }// PrintReq
 
+        // Printing feat bonus
         public void PrintBonus()
         {
             if (this.featLine == null)

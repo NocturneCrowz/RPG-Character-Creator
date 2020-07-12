@@ -9,7 +9,7 @@ namespace RPG_Character_Creator
         // Random number
         private Random rnd = new Random();
 
-        // Rolling a dice with the previous random number as the maximum
+        // Rolling a dice 
         public int Roll(int n)
         {
             int res;
@@ -19,26 +19,10 @@ namespace RPG_Character_Creator
             }
             else
             { 
-                res = -1;
+                res = 0;
             }
 
             return res;    
         }// Roll
-
-        public int RollAndPrint(int n)
-        {
-            int res;
-            if (n >= 1)
-            {
-                Console.WriteLine("Rolling a d" + n + " dice!");
-                res = this.rnd.Next(1, n);
-            }
-            else
-            {
-                res = -1;
-            }
-
-            return res;
-        }// RollAndPrint
     } //Class
 } //Namespace

@@ -12,7 +12,7 @@ namespace RPG_Character_Creator
         private string _name;
         private string _sex;
         private int _age;
-        private int _height;
+        private double _height;
         private int _weight;
         private string _size;
         private string _hair;
@@ -25,7 +25,7 @@ namespace RPG_Character_Creator
         public string Name { get => this._name; set => this._name = value; }
         public string Sex { get => this._sex; set => this._sex = value; }
         public int Age { get => this._age; set => this._age = value; }
-        public int Height { get => this._height; set => this._height = value; }
+        public double Height { get => this._height; set => this._height = value; }
         public int Weight { get => this._weight; set => this._weight = value; }
         public string Size { get => this._size; set => this._size = value; }
         public string Hair { get => this._hair; set => this._hair = value; }

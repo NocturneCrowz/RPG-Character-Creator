@@ -7,15 +7,50 @@ namespace RPG_Character_Creator
     public class CharacterCombat
     {
         private Dictionary<string, int> statistics;
-        private readonly string[] stats = new string[6] { "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma" };
-        private int armorClass;
-        private int fortitude;
-        private int reflex;
-        private int will;
-        private int hp;
-        private int bab;
         private Dictionary<string, int> castableSpells;
+        private readonly string[] stats = new string[6] { "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma" };
+        private int armorClass = 10;
+        private int fortitude = 0;
+        private int reflex = 0;
+        private int will = 0;
+        private int hp = 0;
+        private int bab = 0;
         private int bonusFeat = 0;
+        private string chosenClass;
+        private string race;
+        private string level;
+
+        public void UpdateBaseInfo(int choice, string info)
+        {
+            if (choice == 1)
+                this.chosenClass = info;
+            else if (choice == 2)
+                this.race = info;
+            else
+                this.level = info;
+        }// UpdateBaseInfo
+
+        public string GetBaseInfo(string info)
+        {
+            string var = null;
+            switch (info)
+            {
+                case "chosenClass":
+                    var = this.chosenClass;
+                    break;
+                case "race":
+                    var = this.race;
+                    break;
+                case "level":
+                    var = this.level;
+                    break;
+                default:
+                    Console.WriteLine("I coun't gather your info!");
+                    break;
+            }
+
+            return var;
+        }// GetBaseInfo
 
         public int GetBonusFeat()
         {
@@ -35,59 +70,7 @@ namespace RPG_Character_Creator
             }
         }// PrintStats
 
-        public void ChangeStat()
-        {
-            Console.WriteLine("It seems like you want to change one of your statistic. Choose one: ");
-            Console.WriteLine("1- Armor Class");
-            Console.WriteLine("2- Fortitude");
-            Console.WriteLine("3- Reflex");
-            Console.WriteLine("4- Will");
-            int res;
-
-            try
-            {
-                do
-                {
-                    res = Convert.ToInt32(Console.ReadLine());
-
-                } while ((res < 1) || (res > 4));
-
-                switch (res)
-                {
-                    case 1:
-                        Console.WriteLine("You chose Armor Class. You current value is: " + this.armorClass + "\nWhat is the new value?");
-                        this.armorClass = Convert.ToInt32(Console.ReadLine());
-                        break;
-                    case 2:
-                        Console.WriteLine("You chose Fortitude. You current value is: " + this.fortitude + "\nWhat is the new value?");
-                        this.fortitude = Convert.ToInt32(Console.ReadLine());
-                        break;
-                    case 3:
-                        Console.WriteLine("You chose Reflex. You current value is: " + this.reflex + "\nWhat is the new value?");
-                        this.reflex = Convert.ToInt32(Console.ReadLine());
-                        break;
-                    case 4:
-                        Console.WriteLine("You chose Will. You current value is: " + this.will + "\nWhat is the new value?");
-                        this.will = Convert.ToInt32(Console.ReadLine());
-                        break;
-                    default:
-                        Console.WriteLine("Something went wrong. Try again, or ask for support!");
-                        break;
-                }// Switch
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("It seems like you tried to insert one or more letters instead of an integer. You can't do that!");
-                Console.WriteLine();
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("It seems like something went wrong. Try contacting the developer, but he won't know much more.");
-                Console.WriteLine();
-            }// Try-Catch
-        }// ChangeStat
-
-        protected void UpdateStat(int n, string s)
+        public void UpdateStat(int n, string s)
         {
             if (s == "armorClass")
                 this.armorClass += n;
@@ -105,7 +88,7 @@ namespace RPG_Character_Creator
                 Console.WriteLine("Something went wrong. Ooof.");
         }// UpdateStat
 
-        protected int GetStat(string s)
+        public int GetStat(string s)
         {
             int res = 0;
             if (s == "armorClass")
@@ -126,7 +109,7 @@ namespace RPG_Character_Creator
             return res;
         }// GetStat
 
-        protected int GetModifier(string name)
+        public int GetModifier(string name)
         {
             int value;
             this.statistics.TryGetValue(name, out value);
@@ -143,7 +126,7 @@ namespace RPG_Character_Creator
 
         public void PrintCastableSpells()
         {
-            if (this.castableSpells == null)
+            if (this.castableSpells == null || this.castableSpells.Count == 0)
                 Console.WriteLine("This class cannot cast spells!");
             else
             {
@@ -153,6 +136,11 @@ namespace RPG_Character_Creator
                 }
             }
         }// PrintCastableSpells
+
+        public Dictionary<string, int> ReturnCastableSpells()
+        {
+            return this.castableSpells;
+        }
 
         public void ChangeBaseStat(string s, int n)
         {
@@ -210,7 +198,7 @@ namespace RPG_Character_Creator
                             if (i == 1)
                             {
                                 UpdateStat(GetModifier("Dexterity"), "armorClass");
-                                UpdateStat(GetModifier("Dexterity"), "Reflex");
+                                UpdateStat(GetModifier("Dexterity"), "reflex");
                             }
                             else if (i == 2)
                             {
@@ -227,6 +215,13 @@ namespace RPG_Character_Creator
                 } while (res == 0);
             }// For cycle
         }// InsertBaseStat
+
+        public int GetBaseStat(string s)
+        {
+            int value;
+            this.statistics.TryGetValue(s, out value);
+            return value;
+        }// GetBaseStat
 
         public CharacterCombat()
         { 

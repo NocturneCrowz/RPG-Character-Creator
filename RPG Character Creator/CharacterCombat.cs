@@ -146,13 +146,17 @@ namespace RPG_Character_Creator
         {
             int value;
             bool res = this.statistics.TryGetValue(s, out value);
-            if (res == true)
+            if (res == false)
+            {
+                value = 0;
+                this.statistics.Add(s, n);
+            }
+            else
             {
                 this.statistics.Remove(s);
-                value = 0;
+                this.statistics.Add(s, value + n);
             }
 
-            this.statistics.Add(s, value + n);
             if (s == "Dexterity")
             {
                 this.armorClass = 10 + GetModifier("Dexterity");
@@ -202,16 +206,16 @@ namespace RPG_Character_Creator
                             this.statistics.Add(stats[i], value);
                             if (i == 1)
                             {
-                                UpdateStat(GetModifier("Dexterity"), "armorClass");
-                                UpdateStat(GetModifier("Dexterity"), "reflex");
+                                this.armorClass = 10 + GetModifier("Dexterity");
+                                this.reflex = GetModifier("Dexterity");
                             }
                             else if (i == 2)
                             {
-                                UpdateStat(GetModifier("Constitution"), "fortitude");
+                                this.fortitude = GetModifier("Constitution");
                             }
                             else if (i == 4)
                             {
-                                UpdateStat(GetModifier("Wisdom"), "will");
+                                this.will = GetModifier("Wisdom");
                             }
                             res = 1;
                             i++;

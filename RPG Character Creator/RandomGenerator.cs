@@ -13,6 +13,7 @@ namespace RPG_Character_Creator
             int level;
             int race;
             int feat;
+            int res = 0;
             string[] races = {"Dwarf", "Elf", "Gnome", "Half Elf", "Halfling", "Half Orc", "Human" };
             string[] stats = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma" };
             DiceRoll dice = new DiceRoll();
@@ -35,7 +36,6 @@ namespace RPG_Character_Creator
             {
                 case 1:
                     character = new Barbarian(level);
-
                     character.UpdateBaseInfo(1, "Barbarian");
                     Console.WriteLine("You are a level " + level + " " + races.GetValue(race - 1) + " Barbarian!");
                     break;
@@ -96,34 +96,71 @@ namespace RPG_Character_Creator
 
             character.UpdateBaseInfo(3, level.ToString());
 
+            Console.WriteLine("\n----------------------------------------");
+            Console.WriteLine("How do you want to create your statistics? \n1- Generate it randomly\n2- Insert my own numbers\n");
+
+            do
+            {
+                try
+                {
+                    level = Convert.ToInt32(Console.ReadLine()); // Level is now useless, so I will reuse it 
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("It seems like you tried to insert one or more letters instead of an integer. You can't do that!");
+                    Console.WriteLine();
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("It seems like something went wrong. Try contacting the developer, but he won't know much more.");
+                    Console.WriteLine();
+                }
+                finally
+                {
+                    if (level > 0 && level < 3)
+                    {
+                        res = 1;
+                        Console.WriteLine("Nice! We will now proceed!\n");
+                    }
+                    else
+                        Console.WriteLine("There was a problem selecting your input. Please, try again.");
+                }
+
+            }
+            while (res == 0);
+
+            if (level == 1)
+            {
+                for (int i = 0; i < stats.Length; i++)
+                {
+                    // Rolling 4 dices
+                    int[] roll = new int[4];
+                    roll[0] = dice.Roll(6);
+                    roll[1] = dice.Roll(6);
+                    roll[2] = dice.Roll(6);
+                    roll[3] = dice.Roll(6);
+
+                    // Removing the lowest value
+                    int numToRemove = roll.Min();
+                    int numIndex = Array.IndexOf(roll, numToRemove);
+                    roll = roll.Where((val, idx) => idx != numIndex).ToArray();
+
+                    // Calculating stat value
+                    int value = roll.Sum();
+
+                    // Adding stat value
+                    Console.WriteLine("\n---------------------------------");
+                    Console.WriteLine("Your " + stats[i] + " is " + value + ".");
+                    character.ChangeBaseStat(stats[i], value);
+                }// For Cycle
+            }
+            else if (level == 2)
+            {
+                character.InsertBaseStat();
+            }
+
             // Implementing the race 
             Races.RndChoice(character, race);
-
-            Console.WriteLine("\n----------------------------------------");
-            Console.WriteLine("Creating your basic stats!");
-
-            for (int i = 0; i < stats.Length; i++)
-            {
-                // Rolling 4 dices
-                int[] roll = new int[4];
-                roll[0] = dice.Roll(6);
-                roll[1] = dice.Roll(6);
-                roll[2] = dice.Roll(6);
-                roll[3] = dice.Roll(6);
-
-                // Removing the lowest value
-                int numToRemove = roll.Min();
-                int numIndex = Array.IndexOf(roll, numToRemove);
-                roll = roll.Where((val, idx) => idx != numIndex).ToArray();
-
-                // Calculating stat value
-                int value = roll.Sum();
-
-                // Adding stat value
-                Console.WriteLine("\n---------------------------------");
-                Console.WriteLine("Your " + stats[i] + " is " + value + ".");
-                character.ChangeBaseStat(stats[i], value);
-            }// For Cycle
 
             // Generating HP
             Console.WriteLine("\n---------------------------------");

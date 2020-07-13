@@ -104,6 +104,7 @@ User (U1)
 - U1 ha scelto la generazione randomica
 ##### Basic Course of Events
 - Tutte le statistiche vengono generate randomicamente (entro i range previsti dal manuale)
+- (Opzionale) U1 inserisce manualmente le caratteristiche base
 - U1 inserisce tutti i dati opzionali nella creazione (nome, età, ecc...)
 - U1 salva il personaggio ed esce dalla creazione guidata
 ##### Postcondition

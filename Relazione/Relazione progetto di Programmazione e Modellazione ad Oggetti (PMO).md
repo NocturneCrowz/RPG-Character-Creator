@@ -30,7 +30,7 @@ All'interno della classe *RandomGenerator()* avviene la creazione randomica del 
 
 ##### Lettura e scrittura su file
 In generale, questa funzionalità non dovrebbe presentare enormi problemi. Tuttavia, ho deciso di complicarmi le cose e rendere la lettura e scrittura pseudo-dinamiche: sia per la lettura, sia per la scrittura, viene caricata la path al file da scrivere o leggere in maniera dinamica, senza il bisogno di cambiare manualmente path all'interno del progetto.
-# Scelte Architetturali
+## Scelte Architetturali
 
 Non ci sono scelte architetturali significative; la scelta principale è stata la selezione delle strutture dati adeguate per poter andare a memorizzare i dati inseriti dall'utente.
 
@@ -56,18 +56,18 @@ Durante la scrittura del file, avrei potuto utilizzare il pattern comportamental
 ##### Factory Method
 Il pattern principale che avrei dovuto implementare è proprio questo, il Factory Method. L'unico problema di questo pattern è che ho capito la sua importanza all'interno di un progetto come il mio solo a poche ore dalla consegna. Il Factory Method mi avrebbe permesso di risparmiare tempo, codice e risorse.
 
-### Diagramma delle Classi
+## Diagramma delle Classi
 
 ![Diagramma UML delle classi](https://github.com/NocturneCrowz/PMO-Image/blob/master/RPG%20Character%20Creator%20(1).png)
 
-### Documentazione sull'utilizzo
+## Documentazione sull'utilizzo
 Una volta compilato, il software non ha bisogno di parametri particolari per poter eseguire. Tutte le interazioni necessarie per poter portare a buon fine l'esecuzione verranno richieste a schermo dal programma stesso.
 
-##### Nota
+#### Nota
 La lettura e scrittura su file vengono effettuati in maniera dinamica. Date le mie lacune di conoscenza, ho cercato modi per rendere tali operazioni più "sicure" possibile. Sono a conoscenza di possibili bug dovuti a queste operazioni, ma non sono ancora riuscito a risolverli. 
 Per poter testare il programma, si consiglia di utilizzare Visual Studio su Windows 10; inoltre, la cartella del progetto va estratta nel Desktop. Cercherò di risolvere questo bug nelle future release.
 
-### Use Cases con relativo schema UML
+## Use Cases con relativo schema UML
 Data la relativa semplicità del progetto, gli Use Cases sono abbastanza limitati. Inoltre, si è preferito adottare una versione più discorsiva rispetto ai diagrammi UML.
 ________________________________________________________________________________
 

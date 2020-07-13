@@ -71,6 +71,7 @@ namespace RPG_Character_Creator
 
         public string RandomFeat()
         {
+            // Selecting a random feat
             string feat;
             int n;
             Random rnd = new Random();
@@ -84,6 +85,7 @@ namespace RPG_Character_Creator
         // Printinf feat info
         public void PrintInfo()
         {
+            // Printing the info related to the feat
             if (this.featLine == null)
                 Console.WriteLine("I can't print the info, I don't have a feat associated!");
             else
@@ -100,6 +102,7 @@ namespace RPG_Character_Creator
         // Printing feat requisite
         public void PrintReq()
         {
+            // Printing the requisite related to the feat
             if (this.featLine == null)
                 Console.WriteLine("I can't print the prerequisite, I don't have a feat associated!");
             else
@@ -115,6 +118,7 @@ namespace RPG_Character_Creator
         // Printing feat bonus
         public void PrintBonus()
         {
+            // Printing the bonus related to the feat
             if (this.featLine == null)
                 Console.WriteLine("I can't print the bonus, I don't have a feat associated!");
             else

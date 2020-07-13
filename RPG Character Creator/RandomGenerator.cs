@@ -35,6 +35,7 @@ namespace RPG_Character_Creator
             {
                 case 1:
                     character = new Barbarian(level);
+
                     character.UpdateBaseInfo(1, "Barbarian");
                     Console.WriteLine("You are a level " + level + " " + races.GetValue(race - 1) + " Barbarian!");
                     break;
@@ -121,10 +122,8 @@ namespace RPG_Character_Creator
                 // Adding stat value
                 Console.WriteLine("\n---------------------------------");
                 Console.WriteLine("Your " + stats[i] + " is " + value + ".");
-                character.ChangeBaseStat(stats[i], value); 
+                character.ChangeBaseStat(stats[i], value);
             }// For Cycle
-
-            character.UpdateStat(character.GetModifier("Dexterity"), "reflex");
 
             // Generating HP
             Console.WriteLine("\n---------------------------------");
@@ -147,7 +146,6 @@ namespace RPG_Character_Creator
             Console.WriteLine("\n---------------------------------");
             Console.WriteLine("Spells!");
             character.PrintCastableSpells();
-
 
 
             return character;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace RPG_Character_Creator
 {
@@ -13,6 +14,8 @@ namespace RPG_Character_Creator
             int res = 0;
             int feat = 0;
             dynamic character = new CharacterCombat();
+            DiceRoll dice = new DiceRoll();
+            int[] rolledStats = new int[6];
 
             //Starting by choosing the class
             Console.WriteLine("Welcome to the Guided Generation! My name is... well, I don't have a name, but it's fine anyway!");
@@ -150,8 +153,72 @@ namespace RPG_Character_Creator
 
             //Base Statistics Insertion
             Console.WriteLine("\n----------------------------------------");
-            Console.WriteLine("Now I will need you to insert your statistics!\n");
-            character.InsertBaseStat();
+            Console.WriteLine("How do you want to insert your statistics? \n1- Generate random numbers for me to insert\n2- Insert my own numbers\n");
+
+            res = 0;
+            do
+            {
+                try
+                {
+                    level = Convert.ToInt32(Console.ReadLine()); // Level is now useless, so I will reuse it 
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("It seems like you tried to insert one or more letters instead of an integer. You can't do that!");
+                    Console.WriteLine();
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("It seems like something went wrong. Try contacting the developer, but he won't know much more.");
+                    Console.WriteLine();
+                }
+                finally
+                {
+                    if (level > 0 && level < 3)
+                    {
+                        res = 1;
+                        Console.WriteLine("Nice! We will now proceed!\n");
+                    }
+                    else
+                        Console.WriteLine("There was a problem selecting your input. Please, try again.");
+                }
+
+            } // Level
+            while (res == 0);
+
+            if (level == 1)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    // Rolling 4 dices
+                    int[] roll = new int[4];
+                    roll[0] = dice.Roll(6);
+                    roll[1] = dice.Roll(6);
+                    roll[2] = dice.Roll(6);
+                    roll[3] = dice.Roll(6);
+
+                    // Removing the lowest value
+                    int numToRemove = roll.Min();
+                    int numIndex = Array.IndexOf(roll, numToRemove);
+                    roll = roll.Where((val, idx) => idx != numIndex).ToArray();
+
+                    rolledStats[i] = roll.Sum();
+
+                }// For Cycle
+
+                Console.WriteLine("Those are your stats to allocate!\n");
+                foreach (int item in rolledStats)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
+                character.InsertBaseStat();
+            }
+            else if (level == 2)
+            {
+                character.InsertBaseStat();
+            }
+
 
             //Race choice
             Console.WriteLine("\n----------------------------------------");

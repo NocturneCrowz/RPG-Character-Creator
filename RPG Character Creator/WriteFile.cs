@@ -60,8 +60,6 @@ namespace RPG_Character_Creator
                     sw.WriteLine("Will: " + character.GetStat("will"));
                     sw.WriteLine("Reflex: " + character.GetStat("reflex"));
                     sw.WriteLine("Fortitude: " + character.GetStat("fortitude"));
-                    sw.WriteLine("For unknown reasons, the Will, Reflex and Fortitude values are sometimes buggy when the random generator is used.");
-                    sw.WriteLine("On the guided generator they work fine tho. I'm still working on it.");
 
                     sw.WriteLine("");
                     sw.WriteLine("-----------------------------------------------------");

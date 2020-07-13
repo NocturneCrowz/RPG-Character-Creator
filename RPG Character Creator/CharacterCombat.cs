@@ -9,7 +9,7 @@ namespace RPG_Character_Creator
         private Dictionary<string, int> statistics;
         private Dictionary<string, int> castableSpells;
         private readonly string[] stats = new string[6] { "Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma" };
-        private int armorClass = 10;
+        private int armorClass = 0;
         private int fortitude = 0;
         private int reflex = 0;
         private int will = 0;
@@ -145,21 +145,26 @@ namespace RPG_Character_Creator
         public void ChangeBaseStat(string s, int n)
         {
             int value;
-            this.statistics.TryGetValue(s, out value);
-            this.statistics.Remove(s);
+            bool res = this.statistics.TryGetValue(s, out value);
+            if (res == true)
+            {
+                this.statistics.Remove(s);
+                value = 0;
+            }
+
             this.statistics.Add(s, value + n);
             if (s == "Dexterity")
             {
-                this.armorClass = 10 + Convert.ToInt32((value - 10) / 2);
-                this.reflex = Convert.ToInt32((value - 10) / 2);
+                this.armorClass = 10 + GetModifier("Dexterity");
+                this.reflex = GetModifier("Dexterity");
             }
             else if (s == "Constitution")
             {
-                this.fortitude = Convert.ToInt32((value - 10) / 2);
+                this.fortitude = GetModifier("Constitution");
             }
             else if (s == "Wisdom")
             {
-                this.will = Convert.ToInt32((value - 10) / 2);
+                this.will = GetModifier("Wisdom");
             }
         }// ChangeBaseStat
 

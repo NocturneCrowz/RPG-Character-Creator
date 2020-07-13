@@ -5,7 +5,7 @@
 Nome: Cristian <br>
 Cognome: Barzotti <br>
 Matricola: #290725 <br>
-Tipo di progetto: RPG Character Creator <br>
+Tipo del progetto: RPG Character Creator <br>
 
 ## Specifica di Progetto
 
